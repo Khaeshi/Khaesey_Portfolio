@@ -1,8 +1,6 @@
 <template>
   <NavSideBar/> 
-  <main>
     <HomeLayout/>
-  </main>
 </template>
 
 <script setup lang="ts">

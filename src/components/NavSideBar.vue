@@ -9,7 +9,7 @@ const scrollToSection = (sectionId: string) => {
 
 <template>
     <!-- Sidebar Navigation -->
-<aside class="fixed left-0 top-0 h-screen p-4 z-50 w-48"> 
+<aside class="fixed top-0 h-screen  z-50 w-48 bg-white shadow-sm"> 
    
     <nav class="flex flex-col space-y-4">
       <button 
