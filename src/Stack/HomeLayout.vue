@@ -1,8 +1,8 @@
 <template>
-  <div class="intro-background min-h-screen">
+  <div class="intro-background min-h-screen overflow-x-hidden">
     <!-- Main Content -->
     <main class="ml-[250px] w-[calc(100%-250px)]">
-      <section class="about bg-sky-950 min-h-screen flex items-center justify-center px-8">
+      <section id="about" class="about bg-sky-950 min-h-screen flex items-center justify-center px-8">
         <div class="max-w-4xl w-full text-center">
           <h2 class="text-4xl font-extrabold heading-font text-sky-600 mb-4">Khaesey Angel G. Tablante</h2>
           <p class="text-lg text-gray-600 mb-8">
