@@ -1,8 +1,8 @@
 <template>
   <div class="intro-background min-h-screen overflow-x-hidden">
     <!-- Main Content -->
-    <main class="ml-[400px] w-[calc(100%-400px)]">
-      <section id="about" class="about bg-white min-h-screen flex items-center justify-center px-8">
+    <main class="ml-[400px] w-[calc(100%-400px)] bg-sky-100">
+      <section id="about" class="about min-h-screen flex items-center justify-center px-8">
         <div class="max-w-4xl w-full text-center">
           <h2 class="text-4xl font-extrabold heading-font text-sky-600 mb-4">Khaesey Angel G. Tablante</h2>
           <p class="text-lg text-gray-600 mb-8">
@@ -18,7 +18,7 @@
         <h1 class="text-3xl font-bold mb-8">Education</h1>
         <EducationList />
       </section>
-      <section id="projects" class="min-h-screen py-16 px-8 bg-gray-50">
+      <section id="projects" class="min-h-screen py-16 px-8">
         <h1 class="text-3xl font-bold mb-8 text-gray-800">Projects</h1>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <!-- Project 1 -->
@@ -80,7 +80,7 @@
         <h1 class="text-3xl font-bold mb-8">Skills</h1>
         <SkillsCarousel />
       </section>
-      <section id="contact" class="min-h-screen py-16 px-8 bg-gray-50">
+      <section id="contact" class="min-h-screen py-16 px-8">
         <h1 class="text-3xl font-bold mb-8 text-gray-800">Contact</h1>
         <ContactForm />
       </section>

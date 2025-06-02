@@ -11,7 +11,7 @@ const scrollToSection = (sectionId: string) => {
 
 <template>
     <!-- Sidebar Navigation -->
-<aside class="bg-sky-950 fixed top-0 h-screen w-[400px] z-50 shadow-sm"> 
+<aside class="bg-sky-950 fixed top-0 h-screen w-[400px] z-40 shadow-sm"> 
   <div>
     <Avatar/>
   </div>
@@ -19,31 +19,31 @@ const scrollToSection = (sectionId: string) => {
     <nav class="flex flex-col space-y-7 px-3 py-10">
       <button 
         @click="scrollToSection('about')"
-        class="text-left px-8 py-2 hover:bg-gray-100 border-none transition-colors duration-200 rounded"
+        class="text-left text-white px-8 py-2 hover:text-gray-500 border-none transition-colors duration-200 rounded"
       >
         About
       </button>
       <button 
         @click="scrollToSection('experience')"
-        class="text-left px-8 py-2 hover:bg-gray-100 border-none transition-colors duration-200 rounded"
+        class="text-left text-white px-8 py-2 hover:text-gray-500 border-none transition-colors duration-200 rounded"
       >
         Experience
       </button>
       <button 
         @click="scrollToSection('projects')"
-        class="text-left px-8 py-2 hover:bg-gray-100 border-none transition-colors duration-200 rounded"
+        class="text-left text-white px-8 py-2 hover:text-gray-500 border-none transition-colors duration-200 rounded"
       >
         Projects
       </button>
       <button 
         @click="scrollToSection('skills')"
-        class="text-left px-8 py-2 hover:bg-gray-100 border-none transition-colors duration-200 rounded"
+        class="text-left text-white px-8 py-2 hover:text-gray-500 border-none transition-colors duration-200 rounded"
       >
         Skills
       </button>
       <button 
         @click="scrollToSection('contact')"
-        class="text-left px-8 py-2 hover:bg-gray-100 border-none transition-colors duration-200 rounded"
+        class="text-left text-white px-8 py-2 hover:text-gray-500 border-none transition-colors duration-200 rounded"
       >
         Contact
       </button>
