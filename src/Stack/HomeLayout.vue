@@ -12,7 +12,7 @@
       </section>
       <section id="experience" class="min-h-screen py-16 px-8">
         <h1 class="text-3xl font-bold mb-8">Experience</h1>
-        <Experience />
+        <Experience /> 
       </section>
       <section id="education" class="min-h-screen py-16 px-8">
         <h1 class="text-3xl font-bold mb-8">Education</h1>
