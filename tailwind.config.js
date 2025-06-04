@@ -1,9 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{vue,js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     extend: {
       fontFamily: {
@@ -37,7 +34,7 @@ export default {
           950: '#082f49',
         },
 
-        green:{
+        green: {
           50: '#f0fdf4',
           100: '#dcfce7',
           200: '#bbf7d0',
@@ -49,9 +46,24 @@ export default {
           800: '#166534',
           900: '#0c4a6e',
           950: '#082f49',
-        }
+        },
       },
+    },
+    keyframes: {
+      slidein: {
+        from: {
+          opacity: '0',
+          transform: 'translateY(-50px)',
+        },
+        to: {
+          opacity: '1',
+          transform: 'translateY(0)',
+        },
+      },
+    },
+    animation: {
+      slidein: 'slidein 2s ease 2600ms',
     },
   },
   plugins: [],
-} 
+}
