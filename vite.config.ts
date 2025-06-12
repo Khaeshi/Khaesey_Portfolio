@@ -7,7 +7,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [vue(), vueDevTools()],
-  base: 'https://api.github.com/users/Khaeshi/my-resume',
+  base: '/my-resume/',
   server: {
     port: 3000,
   },
