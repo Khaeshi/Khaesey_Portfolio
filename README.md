@@ -21,11 +21,16 @@ The goal was to create a visually appealing and easily navigable document showca
 
 The project consists of the following files:
 
-* `index.html`: The main HTML file containing the resume content.
-* `style.css`:  The CSS file controlling the visual style.
-* [List other files and their purpose]
+* `src`: The main template file containing the resume content.
+* `Tailwind.config.js`:  The Tailwindcss configutation file controlling the visual style plugins. With this we could inline the css styling.
+* `public`: contains the picture that are rendered and the only file accessible inn web format
+* `index.html`: the HTML5 render, responsible to display the templates from src
+* `License`: Copyright ownership detail
 
 
 ## Copyright
 
-All content within this resume is protected by copyright and may not be reproduced, distributed, or modified without the express written permission of [Your Name].
+Copyright © 2025 Khaeshi. All rights reserved.  
+This resume is provided for personal reference only and may not be copied, modified, or redistributed without express permission.
+
+
