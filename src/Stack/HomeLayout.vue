@@ -79,9 +79,10 @@ import SkillsCarousel from '../components/SkillsCarousel.vue'
 import ContactForm from '../components/ContactForm.vue'
 import ExperienceBox from '../components/ExperienceBox.vue'
 import { ref, onMounted, onUnmounted } from 'vue'
+import type { Ref } from 'vue'
 
-const isDesktop = ref(window.innerWidth >= 768)
-const handleResize = () => {
+const isDesktop: Ref<boolean> = ref(window.innerWidth >= 768)
+const handleResize = (): void => {
   isDesktop.value = window.innerWidth >= 768
 }
 onMounted(() => window.addEventListener('resize', handleResize))
@@ -96,11 +97,11 @@ type Repo = {
   homepage?: string | null
   updated_at: string
 }
-const repos = ref<Repo[]>([])
+const repos: Ref<Repo[]> = ref([])
 
-onMounted(async () => {
+onMounted(async (): Promise<void> => {
   try {
-    const res = await fetch('https://api.github.com/users/Khaeshi/repos')
+    const res: Response = await fetch('https://api.github.com/users/Khaeshi/repos')
     if (res.ok) {
       const data: Repo[] = await res.json()
       // Sort by updated date
