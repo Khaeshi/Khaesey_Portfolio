@@ -30,17 +30,31 @@
           <EducationList />
         </ExperienceBox>
       </section>
-      <section id="projects" class="min-h-screen py-12 sm:py-16 px-4 sm:px-8">
+      <section id="projects" class="min-h-screen py-12 sm:py-16 px-6 sm:px-8">
         <h1 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-gray-800">Projects</h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4s sm:gap-8">
           <div
             v-for="repo in repos"
             :key="repo.id"
-            class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-transform duration-300 border border-sky-100"
           >
+            <img
+              :src="repo.image || 'projects/Resume.png'"
+              alt="Project image"
+              class="w-full h-32 object-cover mb-4"
+            />
             <div class="p-6">
               <h3 class="text-xl font-bold text-gray-800 mb-2">{{ repo.name }}</h3>
-              <p class="text-gray-600 mb-4">{{ repo.description }}</p>
+              <div class="flex flex-wrap gap-2 mb-2">
+                <span
+                  v-for="topic in repo.topics"
+                  :key="topic"
+                  class="px-2 py-1 bg-sky-100 text-sky-600 rounded-full text-xs"
+                >
+                  {{ topic }}
+                </span>
+              </div>
+              <p class="text-gray-600 mb-4 line-clamp-3">{{ repo.description }}</p>
               <div class="flex gap-4">
                 <a
                   :href="repo.html_url"
@@ -52,8 +66,8 @@
                   v-if="repo.homepage"
                   :href="repo.homepage"
                   target="_blank"
-                  class="text-sky-600 hover:text-sky-700 font-medium"
-                  >View Demo →</a
+                  class="bg-sky-600 text-white px-3 py-1 rounded hover:bg-sky-700 font-medium"
+                  >View Demo</a
                 >
               </div>
             </div>
@@ -96,6 +110,8 @@ type Repo = {
   html_url: string
   homepage?: string | null
   updated_at: string
+  image?: string | null
+  topics?: string[] | null
 }
 const repos: Ref<Repo[]> = ref([])
 
