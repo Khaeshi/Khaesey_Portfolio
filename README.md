@@ -6,7 +6,7 @@ This README describes the structure and technologies used to create this respons
 ## Project Overview
 
 This resume is designed for optimal viewing across various devices. It utilizes [Laravel as framework, PHP as the backend, Vue3 components and styling using Tailwind 4, and Typescript].  
-The goal was to create a visually appealing and easily navigable document showcasing my skills and experience.
+The goal was to create a visually appealing and easily navigable resume showcasing my expertise and experience.
 
 
 ## Technologies Used
