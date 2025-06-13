@@ -1,92 +1,76 @@
 <template>
   <Transition
-    enter-active-class="transition-opacity duration-500 ease-out"
-    enter-from-class="opacity-0"
-    enter-to-class="opacity-100"
-    leave-active-class="transition-opacity duration-500 ease-in"
-    leave-from-class="opacity-100"
-    leave-to-class="opacity-0"
+    enter-active-class="transition-all duration-500 ease-out"
+    enter-from-class="opacity-0 scale-95"
+    enter-to-class="opacity-100 scale-100"
+    leave-active-class="transition-all duration-500 ease-in"
+    leave-from-class="opacity-100 scale-100"
+    leave-to-class="opacity-0 scale-95"
   >
-    <div v-if="isLoading" class="fixed inset-0 flex items-center justify-center z-[9999] bg-gray-800 ">
-      <div class="bg-white rounded-lg shadow-lg p-8 w-96 transform transition-all duration-500 ease-in-out">
-        <div class="flex items-center mb-4">
-          <img :src="logoUrl" :alt="logoAlt" class="h-12 w-auto mr-4">
-          <h2 class="text-xl font-bold text-gray-800">Loading...</h2>
+    <div
+      v-if="isLoading"
+      class="fixed inset-0 flex items-center justify-center z-[9999] bg-neutral-950/90 backdrop-blur-sm"
+    >
+      <div
+        class="bg-white dark:bg-neutral-800 rounded-xl shadow-2xl p-8 w-96 transform transition-all duration-500 ease-in-out"
+      >
+        <div class="flex items-center mb-6">
+          <div class="relative">
+            <div
+              class="absolute -inset-2 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 opacity-25 blur-sm animate-pulse"
+            ></div>
+            <img
+              :src="logoUrl"
+              :alt="logoAlt"
+              class="h-16 w-16 rounded-full object-cover relative"
+            />
+          </div>
+          <div class="ml-4">
+            <h2 class="text-xl font-bold text-neutral-800 dark:text-neutral-100">Loading...</h2>
+            <p class="text-sm text-neutral-600 dark:text-neutral-400">{{ progressMessage }}</p>
+          </div>
         </div>
-        <div class="h-2.5 bg-gray-200 rounded-full mb-4 overflow-hidden">
-          <div 
-            class="h-full bg-green-500 rounded-full transition-all duration-300 ease-in-out"
+        <div class="h-2 bg-neutral-200 dark:bg-neutral-700 rounded-full mb-4 overflow-hidden">
+          <div
+            class="h-full bg-gradient-to-r from-primary-500 to-accent-500 rounded-full transition-all duration-300 ease-in-out"
             :style="{ width: progressPercentage + '%' }"
           ></div>
         </div>
-        <p class="text-gray-600 text-center">{{ progressMessage }}</p>
+        <div class="flex justify-between text-xs text-neutral-500 dark:text-neutral-400">
+          <span>Loading</span>
+          <span>{{ progressPercentage }}%</span>
+        </div>
       </div>
     </div>
   </Transition>
 </template>
 
-<script>
-export default {
-  props: {
-    isLoading: {
-      type: Boolean,
-      default: false
-    },
-    logoUrl: {
-      type: String,
-      default: '' // Provide your logo URL here
-    },
-    logoAlt: {
-      type: String,
-      default: 'Logo'
-    },
-    progressPercentage: {
-      type: Number,
-      default: 0
-    },
-    progressMessage: {
-      type: String,
-      default: 'Please wait...'
-    }
-  }
-};
+<script setup lang="ts">
+defineOptions({
+  name: 'LoadingScreen',
+})
+
+defineProps<{
+  isLoading: boolean
+  logoUrl: string
+  logoAlt?: string
+  progressPercentage: number
+  progressMessage: string
+}>()
 </script>
 
 <style scoped>
-.progress-bar {
-  height: 10px;
-  background-color: #e0e0e0;
-  border-radius: 5px;
-  overflow: hidden;
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-.progress-bar-fill {
-  height: 100%;
-  background-color: #4CAF50;
-  border-radius: 5px;
-  transition: width 0.3s ease-in-out;
-}
-
-/* Fade transition */
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-
-/* Optional: Add a scale effect */
-.fade-enter-active .bg-white,
-.fade-leave-active .bg-white {
-  transition: all 0.5s ease;
-}
-
-.fade-enter-from .bg-white,
-.fade-leave-to .bg-white {
-  transform: scale(0.95);
-  opacity: 0;
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 </style>
