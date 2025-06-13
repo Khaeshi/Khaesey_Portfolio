@@ -15,7 +15,7 @@
 import { ref, onMounted } from 'vue'
 import NavSideBar from '../components/NavSideBar.vue'
 import HomeLayout from './HomeLayout.vue'
-import LoadingScreen from '../components/Loading/Loadingscreen.vue'
+import LoadingScreen from '../components/Loading/LoadingScreen.vue'
 
 const isLoading = ref(true)
 const loadingProgress = ref(0)

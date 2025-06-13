@@ -46,7 +46,7 @@ const scrollToSection = (sectionId: string) => {
 <template>
   <!-- Hamburger Icon (mobile only) -->
   <button
-    class="fixed top-4 left-4 z-50 md:hidden bg-primary-900 text-primary-300 p-2 rounded focus:outline-none hover:bg-primary-800 transition-colors"
+    class="fixed top-4 left-4 z-50 md:hidden bg-transparent-primary-900 text-primary-300 p-2 rounded focus:outline-none hover:bg-primary-800 transition-colors"
     @click="isMobileOpen = true"
     v-if="!isMobileOpen"
   >
@@ -65,7 +65,7 @@ const scrollToSection = (sectionId: string) => {
   <!-- Sidebar Navigation -->
   <aside
     :class="[
-      'fixed top-0 h-screen z-50 shadow-lg transition-all duration-300 bg-neutral-900 border-r border-neutral-800',
+      'fixed top-0 min-h-screen max-h-screen z-50 shadow-lg transition-all duration-300 bg-neutral-900 border-r border-neutral-800 flex flex-col',
       isCollapsed ? 'md:w-[100px] w-[80vw]' : 'md:w-[400px] w-[80vw]',
       'md:z-40',
       // Mobile: slide in/out
@@ -87,7 +87,7 @@ const scrollToSection = (sectionId: string) => {
     <div :class="['flex justify-center transition-all duration-300 ease-in-out scale-100']">
       <Avatar />
     </div>
-    <nav class="flex flex-col space-y-7 px-3 py-10">
+    <nav class="flex flex-col space-y-4 px-3 py-6 overflow-y-auto flex-grow">
       <button
         @click="scrollToSection('about')"
         class="text-left text-neutral-300 px-8 py-2 hover:text-primary-400 hover:bg-neutral-800/50 border-none transition-all duration-200 rounded flex items-center group"
