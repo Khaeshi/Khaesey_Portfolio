@@ -12,7 +12,7 @@
       class="fixed inset-0 flex items-center justify-center z-[9999] bg-neutral-950/90 backdrop-blur-sm"
     >
       <div
-        class="bg-white dark:bg-neutral-800 rounded-xl shadow-2xl p-8 w-96 transform transition-all duration-500 ease-in-out"
+        class="bg-white dark:bg-neutral-800 rounded-xl shadow-2xl p-6 sm:p-8 w-[90%] max-w-sm transform transition-all duration-500 ease-in-out"
       >
         <div class="flex items-center mb-6">
           <div class="relative">
@@ -22,23 +22,27 @@
             <img
               :src="logoUrl"
               :alt="logoAlt"
-              class="h-16 w-16 rounded-full object-cover relative"
+              class="h-12 w-12 sm:h-16 sm:w-16 rounded-full object-cover relative"
             />
           </div>
           <div class="ml-4">
-            <h2 class="text-xl font-bold text-neutral-800 dark:text-neutral-100">Loading...</h2>
+            <h2 class="text-lg sm:text-xl font-bold text-neutral-800 dark:text-neutral-100">
+              Loading...
+            </h2>
             <p class="text-sm text-neutral-600 dark:text-neutral-400">{{ progressMessage }}</p>
           </div>
         </div>
-        <div class="h-2 bg-neutral-200 dark:bg-neutral-700 rounded-full mb-4 overflow-hidden">
-          <div
-            class="h-full bg-gradient-to-r from-primary-500 to-accent-500 rounded-full transition-all duration-300 ease-in-out"
-            :style="{ width: progressPercentage + '%' }"
-          ></div>
-        </div>
-        <div class="flex justify-between text-xs text-neutral-500 dark:text-neutral-400">
-          <span>Loading</span>
-          <span>{{ progressPercentage }}%</span>
+        <div class="space-y-2">
+          <div class="h-2 bg-neutral-200 dark:bg-neutral-700 rounded-full overflow-hidden">
+            <div
+              class="h-full bg-gradient-to-r from-primary-500 to-accent-500 rounded-full transition-all duration-300 ease-in-out"
+              :style="{ width: progressPercentage + '%' }"
+            ></div>
+          </div>
+          <div class="flex justify-between text-xs text-neutral-500 dark:text-neutral-400">
+            <span>Loading</span>
+            <span>{{ progressPercentage }}%</span>
+          </div>
         </div>
       </div>
     </div>
@@ -46,17 +50,29 @@
 </template>
 
 <script setup lang="ts">
+import { withDefaults } from 'vue'
+
 defineOptions({
   name: 'LoadingScreen',
 })
 
-defineProps<{
-  isLoading: boolean
-  logoUrl: string
-  logoAlt?: string
-  progressPercentage: number
-  progressMessage: string
-}>()
+// Add prop validation with defaults
+withDefaults(
+  defineProps<{
+    isLoading: boolean
+    logoUrl: string
+    logoAlt?: string
+    progressPercentage: number
+    progressMessage: string
+  }>(),
+  {
+    isLoading: false,
+    logoUrl: '',
+    logoAlt: 'Loading...',
+    progressPercentage: 0,
+    progressMessage: 'Loading...',
+  },
+)
 </script>
 
 <style scoped>
