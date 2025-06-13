@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ScrollTransition from './Animation/ScrollTransition.vue'
+import ScrollTransition from '../Animation/ScrollTransition.vue'
 
 defineProps<{
   title: string

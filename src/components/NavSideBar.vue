@@ -111,16 +111,7 @@ const scrollToSection = (sectionId: string) => {
         <i
           class="fas fa-code text-lg group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors"
         ></i>
-        <span class="ml-2">Projects</span>
-      </button>
-      <button
-        @click="scrollToSection('skills')"
-        class="text-left text-neutral-600 dark:text-neutral-300 px-8 py-2 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-neutral-100 dark:hover:bg-neutral-800/50 border-none transition-all duration-200 rounded flex items-center group"
-      >
-        <i
-          class="fas fa-tools text-lg group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors"
-        ></i>
-        <span class="ml-2">Skills</span>
+        <span class="ml-2">Projects & Skills</span>
       </button>
       <button
         @click="scrollToSection('contact')"
