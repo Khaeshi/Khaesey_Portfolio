@@ -5,8 +5,10 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        serif: ['Playfair Display', 'serif'],
+        sans: ['Outfit', 'system-ui', 'sans-serif'],
+        serif: ['Cormorant Garamond', 'serif'],
+        display: ['Montserrat', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
       },
       colors: {
         primary: {

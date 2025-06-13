@@ -17,7 +17,7 @@
           >
             Khaesey Angel Tablante
           </h2>
-          <p class="text-base sm:text-lg text-neutral-600 dark:text-neutral-300 mb-8">
+          <p class="text-base sm:text-lg body-font text-neutral-600 dark:text-neutral-300 mb-8">
             I'm a passionate
             <span class="font-semibold text-secondary-600 dark:text-secondary-400"
               >Fullstack Developer</span
@@ -40,7 +40,7 @@
       </section>
       <section id="projects" class="min-h-screen py-12 sm:py-16 px-6 sm:px-8">
         <h1
-          class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-primary-600 dark:text-primary-400"
+          class="text-2xl sm:text-3xl font-bold heading-font mb-6 sm:mb-8 text-primary-600 dark:text-primary-400"
         >
           Projects
         </h1>
@@ -56,33 +56,35 @@
               class="w-full h-32 object-cover mb-4"
             />
             <div class="p-6">
-              <h3 class="text-xl font-bold text-neutral-800 dark:text-neutral-100 mb-2">
+              <h3
+                class="text-xl font-bold heading-font text-neutral-800 dark:text-neutral-100 mb-2"
+              >
                 {{ repo.name }}
               </h3>
               <div class="flex flex-wrap gap-2 mb-2">
                 <span
                   v-for="topic in repo.topics"
                   :key="topic"
-                  class="px-2 py-1 bg-primary-100 dark:bg-primary-900/50 text-primary-600 dark:text-primary-300 rounded-full text-xs"
+                  class="px-2 py-1 bg-primary-100 dark:bg-primary-900/50 text-primary-600 dark:text-primary-300 rounded-full text-xs code-font"
                 >
                   {{ topic }}
                 </span>
               </div>
-              <p class="text-neutral-600 dark:text-neutral-400 mb-4 line-clamp-3">
+              <p class="text-neutral-600 dark:text-neutral-400 mb-4 line-clamp-3 body-font">
                 {{ repo.description }}
               </p>
               <div class="flex gap-4">
                 <a
                   :href="repo.html_url"
                   target="_blank"
-                  class="text-secondary-600 dark:text-secondary-400 hover:text-secondary-500 dark:hover:text-secondary-300 font-medium"
+                  class="text-secondary-600 dark:text-secondary-400 hover:text-secondary-500 dark:hover:text-secondary-300 font-medium body-font"
                   >Source Code →</a
                 >
                 <a
                   v-if="repo.homepage"
                   :href="repo.homepage"
                   target="_blank"
-                  class="bg-accent-600 text-white px-3 py-1 rounded hover:bg-accent-500 font-medium"
+                  class="bg-accent-600 text-white px-3 py-1 rounded hover:bg-accent-500 font-medium body-font"
                   >View Demo</a
                 >
               </div>
@@ -92,7 +94,7 @@
       </section>
       <section id="skills" class="min-h-screen py-12 sm:py-16 px-4 sm:px-8">
         <h1
-          class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-primary-600 dark:text-primary-400"
+          class="text-2xl sm:text-3xl font-bold heading-font mb-6 sm:mb-8 text-primary-600 dark:text-primary-400"
         >
           Skills
         </h1>
@@ -100,7 +102,7 @@
       </section>
       <section id="contact" class="min-h-screen py-12 sm:py-16 px-4 sm:px-8">
         <h1
-          class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-primary-600 dark:text-primary-400"
+          class="text-2xl sm:text-3xl font-bold heading-font mb-6 sm:mb-8 text-primary-600 dark:text-primary-400"
         >
           Contact
         </h1>
