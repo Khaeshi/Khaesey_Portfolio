@@ -1,12 +1,14 @@
 <template>
-  <LoadingScreen
-    :is-loading="isLoading"
-    :logo-url="'/public/picture/avatar.png'"
-    :progress-percentage="loadingProgress"
-    :progress-message="loadingMessage"
-  />
-  <NavSideBar />
-  <HomeLayout />
+  <div class="w-screen overflow-x-hidden scrollbar-hide">
+    <LoadingScreen
+      :is-loading="isLoading"
+      :logo-url="avatarUrl"
+      :progress-percentage="loadingProgress"
+      :progress-message="loadingMessage"
+    />
+    <NavSideBar />
+    <HomeLayout />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -18,6 +20,7 @@ import LoadingScreen from '../components/Loading/Loadingscreen.vue'
 const isLoading = ref(true)
 const loadingProgress = ref(0)
 const loadingMessage = ref('Loading your portfolio...')
+const avatarUrl = new URL('/picture/avatar.png', import.meta.url).href // import because logo-url direct linking doesnt work
 
 onMounted(() => {
   // Simulate loading progress

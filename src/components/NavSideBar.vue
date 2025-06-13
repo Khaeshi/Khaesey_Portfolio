@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import Avatar from './Avatar.vue'
-import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { ref, onMounted, onUnmounted, watch, provide } from 'vue'
+import { useTheme } from '../stores/theme'
 
 const isCollapsed = ref(false)
 const isMobileOpen = ref(false)
+const { isDark, toggleTheme } = useTheme()
+
+provide('isCollapsed', isCollapsed)
 
 const setSidebarWidth = () => {
   document.body.style.setProperty('--sidebar-width', isCollapsed.value ? '100px' : '400px')
@@ -42,7 +46,7 @@ const scrollToSection = (sectionId: string) => {
 <template>
   <!-- Hamburger Icon (mobile only) -->
   <button
-    class="fixed top-4 left-4 z-50 md:hidden bg-sky-950 text-white p-2 rounded focus:outline-none"
+    class="fixed top-4 left-4 z-50 md:hidden bg-primary-900 text-primary-300 p-2 rounded focus:outline-none hover:bg-primary-800 transition-colors"
     @click="isMobileOpen = true"
     v-if="!isMobileOpen"
   >
@@ -54,18 +58,18 @@ const scrollToSection = (sectionId: string) => {
   <!-- Overlay (mobile only, when sidebar is open) -->
   <div
     v-if="isMobileOpen"
-    class="fixed inset-0 bg-black bg-opacity-40 z-40 md:hidden"
+    class="fixed inset-0 bg-neutral-950/80 backdrop-blur-sm z-40 md:hidden"
     @click="isMobileOpen = false"
   ></div>
 
   <!-- Sidebar Navigation -->
   <aside
     :class="[
-      'fixed top-0 h-screen z-50 shadow-sm transition-all duration-300 bg-sky-950',
+      'fixed top-0 h-screen z-50 shadow-lg transition-all duration-300 bg-neutral-900 border-r border-neutral-800',
       isCollapsed ? 'md:w-[100px] w-[80vw]' : 'md:w-[400px] w-[80vw]',
       'md:z-40',
       // Mobile: slide in/out
-      isMobileOpen ? 'left-0' : 'left-[-100vw]',
+      isMobileOpen ? 'left-0' : '-left-[80vw]',
       'md:left-0',
       'md:block',
       'md:transition-none',
@@ -75,7 +79,7 @@ const scrollToSection = (sectionId: string) => {
     <!-- Close button (mobile only) -->
     <button
       v-if="isMobileOpen"
-      class="absolute top-4 right-4 z-50 md:hidden text-white text-3xl focus:outline-none"
+      class="absolute top-4 right-4 z-50 md:hidden text-neutral-400 hover:text-neutral-200 text-3xl focus:outline-none transition-colors"
       @click="isMobileOpen = false"
     >
       &times;
@@ -86,38 +90,52 @@ const scrollToSection = (sectionId: string) => {
     <nav class="flex flex-col space-y-7 px-3 py-10">
       <button
         @click="scrollToSection('about')"
-        class="text-left text-white px-8 py-2 hover:text-gray-500 border-none transition-colors duration-200 rounded flex items-center"
+        class="text-left text-neutral-300 px-8 py-2 hover:text-primary-400 hover:bg-neutral-800/50 border-none transition-all duration-200 rounded flex items-center group"
       >
-        <i class="fas fa-user text-lg"></i>
+        <i class="fas fa-user text-lg group-hover:text-primary-400 transition-colors"></i>
         <span class="ml-2">About</span>
       </button>
       <button
         @click="scrollToSection('experience')"
-        class="text-left text-white px-8 py-2 hover:text-gray-500 border-none transition-colors duration-200 rounded flex items-center"
+        class="text-left text-neutral-300 px-8 py-2 hover:text-primary-400 hover:bg-neutral-800/50 border-none transition-all duration-200 rounded flex items-center group"
       >
-        <i class="fas fa-briefcase text-lg"></i>
+        <i class="fas fa-briefcase text-lg group-hover:text-primary-400 transition-colors"></i>
         <span class="ml-2">Experience</span>
       </button>
       <button
         @click="scrollToSection('projects')"
-        class="text-left text-white px-8 py-2 hover:text-gray-500 border-none transition-colors duration-200 rounded flex items-center"
+        class="text-left text-neutral-300 px-8 py-2 hover:text-primary-400 hover:bg-neutral-800/50 border-none transition-all duration-200 rounded flex items-center group"
       >
-        <i class="fas fa-code text-lg"></i>
+        <i class="fas fa-code text-lg group-hover:text-primary-400 transition-colors"></i>
         <span class="ml-2">Projects</span>
       </button>
       <button
         @click="scrollToSection('skills')"
-        class="text-left text-white px-8 py-2 hover:text-gray-500 border-none transition-colors duration-200 rounded flex items-center"
+        class="text-left text-neutral-300 px-8 py-2 hover:text-primary-400 hover:bg-neutral-800/50 border-none transition-all duration-200 rounded flex items-center group"
       >
-        <i class="fas fa-tools text-lg"></i>
+        <i class="fas fa-tools text-lg group-hover:text-primary-400 transition-colors"></i>
         <span class="ml-2">Skills</span>
       </button>
       <button
         @click="scrollToSection('contact')"
-        class="text-left text-white px-8 py-2 hover:text-gray-500 border-none transition-colors duration-200 rounded flex items-center"
+        class="text-left text-neutral-300 px-8 py-2 hover:text-primary-400 hover:bg-neutral-800/50 border-none transition-all duration-200 rounded flex items-center group"
       >
-        <i class="fas fa-envelope text-lg"></i>
+        <i class="fas fa-envelope text-lg group-hover:text-primary-400 transition-colors"></i>
         <span class="ml-2">Contact</span>
+      </button>
+      <!-- Theme Toggle Button -->
+      <button
+        @click="toggleTheme"
+        class="text-left text-neutral-300 px-8 py-2 hover:text-primary-400 hover:bg-neutral-800/50 border-none transition-all duration-200 rounded flex items-center group"
+      >
+        <i
+          :class="[
+            'fas',
+            isDark ? 'fa-sun' : 'fa-moon',
+            'text-lg group-hover:text-primary-400 transition-colors',
+          ]"
+        ></i>
+        <span class="ml-2">{{ isDark ? 'Light Mode' : 'Dark Mode' }}</span>
       </button>
     </nav>
   </aside>
