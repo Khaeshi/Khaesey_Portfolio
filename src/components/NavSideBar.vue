@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import Avatar from './Avatar.vue'
 import { ref, onMounted, onUnmounted, watch, provide } from 'vue'
-import { useTheme } from '../stores/theme'
 
 const isCollapsed = ref(false)
 const isMobileOpen = ref(false)
-const { isDark, toggleTheme } = useTheme()
 
 provide('isCollapsed', isCollapsed)
 
@@ -65,7 +63,7 @@ const scrollToSection = (sectionId: string) => {
   <!-- Sidebar Navigation -->
   <aside
     :class="[
-      'fixed top-0 min-h-screen max-h-screen z-50 shadow-lg transition-all duration-300 bg-neutral-900 border-r border-neutral-800 flex flex-col',
+      'fixed top-0 min-h-screen max-h-screen z-50 shadow-lg transition-all duration-300 bg-white dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 flex flex-col',
       isCollapsed ? 'md:w-[100px] w-[80vw]' : 'md:w-[400px] w-[80vw]',
       'md:z-40',
       // Mobile: slide in/out
@@ -79,7 +77,7 @@ const scrollToSection = (sectionId: string) => {
     <!-- Close button (mobile only) -->
     <button
       v-if="isMobileOpen"
-      class="absolute top-4 right-4 z-50 md:hidden text-neutral-400 hover:text-neutral-200 text-3xl focus:outline-none transition-colors"
+      class="absolute top-4 right-4 z-50 md:hidden text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 text-3xl focus:outline-none transition-colors"
       @click="isMobileOpen = false"
     >
       &times;
@@ -90,52 +88,48 @@ const scrollToSection = (sectionId: string) => {
     <nav class="flex flex-col space-y-4 px-3 py-6 overflow-y-auto flex-grow">
       <button
         @click="scrollToSection('about')"
-        class="text-left text-neutral-300 px-8 py-2 hover:text-primary-400 hover:bg-neutral-800/50 border-none transition-all duration-200 rounded flex items-center group"
+        class="text-left text-neutral-600 dark:text-neutral-300 px-8 py-2 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-neutral-100 dark:hover:bg-neutral-800/50 border-none transition-all duration-200 rounded flex items-center group"
       >
-        <i class="fas fa-user text-lg group-hover:text-primary-400 transition-colors"></i>
+        <i
+          class="fas fa-user text-lg group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors"
+        ></i>
         <span class="ml-2">About</span>
       </button>
       <button
         @click="scrollToSection('experience')"
-        class="text-left text-neutral-300 px-8 py-2 hover:text-primary-400 hover:bg-neutral-800/50 border-none transition-all duration-200 rounded flex items-center group"
+        class="text-left text-neutral-600 dark:text-neutral-300 px-8 py-2 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-neutral-100 dark:hover:bg-neutral-800/50 border-none transition-all duration-200 rounded flex items-center group"
       >
-        <i class="fas fa-briefcase text-lg group-hover:text-primary-400 transition-colors"></i>
+        <i
+          class="fas fa-briefcase text-lg group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors"
+        ></i>
         <span class="ml-2">Experience</span>
       </button>
       <button
         @click="scrollToSection('projects')"
-        class="text-left text-neutral-300 px-8 py-2 hover:text-primary-400 hover:bg-neutral-800/50 border-none transition-all duration-200 rounded flex items-center group"
+        class="text-left text-neutral-600 dark:text-neutral-300 px-8 py-2 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-neutral-100 dark:hover:bg-neutral-800/50 border-none transition-all duration-200 rounded flex items-center group"
       >
-        <i class="fas fa-code text-lg group-hover:text-primary-400 transition-colors"></i>
+        <i
+          class="fas fa-code text-lg group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors"
+        ></i>
         <span class="ml-2">Projects</span>
       </button>
       <button
         @click="scrollToSection('skills')"
-        class="text-left text-neutral-300 px-8 py-2 hover:text-primary-400 hover:bg-neutral-800/50 border-none transition-all duration-200 rounded flex items-center group"
+        class="text-left text-neutral-600 dark:text-neutral-300 px-8 py-2 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-neutral-100 dark:hover:bg-neutral-800/50 border-none transition-all duration-200 rounded flex items-center group"
       >
-        <i class="fas fa-tools text-lg group-hover:text-primary-400 transition-colors"></i>
+        <i
+          class="fas fa-tools text-lg group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors"
+        ></i>
         <span class="ml-2">Skills</span>
       </button>
       <button
         @click="scrollToSection('contact')"
-        class="text-left text-neutral-300 px-8 py-2 hover:text-primary-400 hover:bg-neutral-800/50 border-none transition-all duration-200 rounded flex items-center group"
-      >
-        <i class="fas fa-envelope text-lg group-hover:text-primary-400 transition-colors"></i>
-        <span class="ml-2">Contact</span>
-      </button>
-      <!-- Theme Toggle Button -->
-      <button
-        @click="toggleTheme"
-        class="text-left text-neutral-300 px-8 py-2 hover:text-primary-400 hover:bg-neutral-800/50 border-none transition-all duration-200 rounded flex items-center group"
+        class="text-left text-neutral-600 dark:text-neutral-300 px-8 py-2 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-neutral-100 dark:hover:bg-neutral-800/50 border-none transition-all duration-200 rounded flex items-center group"
       >
         <i
-          :class="[
-            'fas',
-            isDark ? 'fa-sun' : 'fa-moon',
-            'text-lg group-hover:text-primary-400 transition-colors',
-          ]"
+          class="fas fa-envelope text-lg group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors"
         ></i>
-        <span class="ml-2">{{ isDark ? 'Light Mode' : 'Dark Mode' }}</span>
+        <span class="ml-2">Contact</span>
       </button>
     </nav>
   </aside>

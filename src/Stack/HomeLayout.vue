@@ -15,7 +15,7 @@
           <h2
             class="text-3xl sm:text-4xl font-extrabold heading-font text-primary-600 dark:text-primary-400 mb-4"
           >
-            Khaesey Angel G. Tablante
+            Khaesey Angel Tablante
           </h2>
           <p class="text-base sm:text-lg text-neutral-600 dark:text-neutral-300 mb-8">
             I'm a passionate
