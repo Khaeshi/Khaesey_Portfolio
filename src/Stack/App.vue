@@ -27,7 +27,7 @@ const loadingMessages = [
   { threshold: 0, message: 'Initializing...' },
   { threshold: 20, message: 'Loading assets...' },
   { threshold: 40, message: 'Preparing components...' },
-  { threshold: 60, message: 'Setting up layout...' },
+  { threshold: 65, message: 'Setting up layout...' },
   { threshold: 80, message: 'Almost there...' },
   { threshold: 100, message: 'Ready!' },
 ]

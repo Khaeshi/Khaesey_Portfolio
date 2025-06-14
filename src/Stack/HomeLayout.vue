@@ -25,7 +25,7 @@
               >Fullstack Developer</span
             >
             with a keen eye for creating beautiful and functional web applications. With expertise
-            in modern web technologies, He strive to build solutions that not only meet technical
+            in modern web technologies, he strive to build solutions that not only meet technical
             requirements but also provide exceptional user experiences.
           </p>
         </div>

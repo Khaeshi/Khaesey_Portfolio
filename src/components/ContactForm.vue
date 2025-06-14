@@ -101,6 +101,18 @@
       <!-- Contact Form -->
       <div class="bg-white dark:bg-neutral-800 rounded-xl shadow-lg p-6">
         <form @submit.prevent="handleSubmit" class="space-y-6">
+          <div
+            v-if="error"
+            class="bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-300 p-4 rounded-lg"
+          >
+            {{ error }}
+          </div>
+          <div
+            v-if="success"
+            class="bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 p-4 rounded-lg"
+          >
+            Message sent successfully!
+          </div>
           <div>
             <label
               for="name"
@@ -148,9 +160,10 @@
           </div>
           <button
             type="submit"
-            class="w-full bg-sky-600 text-white py-2 px-4 rounded-lg hover:bg-sky-700 transition-colors body-font"
+            :disabled="isLoading"
+            class="w-full bg-sky-600 text-white py-2 px-4 rounded-lg hover:bg-sky-700 transition-colors body-font disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Send Message
+            {{ isLoading ? 'Sending...' : 'Send Message' }}
           </button>
         </form>
       </div>
@@ -160,6 +173,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import emailjs from '@emailjs/browser'
 
 const form = ref({
   name: '',
@@ -167,14 +181,41 @@ const form = ref({
   message: '',
 })
 
-const handleSubmit = () => {
-  // Handle form submission
-  console.log('Form submitted:', form.value)
-  // Reset form
-  form.value = {
-    name: '',
-    email: '',
-    message: '',
+const isLoading = ref(false)
+const error = ref('')
+const success = ref(false)
+
+const handleSubmit = async () => {
+  try {
+    isLoading.value = true
+    error.value = ''
+    success.value = false
+
+    await emailjs.send(
+      'service_676idjs',
+      'template_apqg23u',
+      {
+        to_email: 'kagtabss@gmail.com', // Your email where you want to receive messages
+        from_name: form.value.name,
+        from_email: form.value.email,
+        message: form.value.message,
+        to_name: 'Khaesey',
+        reply_to: form.value.email,
+      },
+      'c-4_gz6Nt8VC1DApb',
+    )
+
+    success.value = true
+    // Reset form
+    form.value = {
+      name: '',
+      email: '',
+      message: '',
+    }
+  } catch (err) {
+    error.value = err instanceof Error ? err.message : 'Failed to send message'
+  } finally {
+    isLoading.value = false
   }
 }
 </script>
