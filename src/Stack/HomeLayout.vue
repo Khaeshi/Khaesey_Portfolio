@@ -197,8 +197,17 @@ onMounted(async (): Promise<void> => {
     const res: Response = await fetch('https://api.github.com/users/Khaeshi/repos')
     if (res.ok) {
       const data: Repo[] = await res.json()
-      // Sort by updated date
-      repos.value = data.sort(
+      const processedRepos = data.map((repo) => {
+        // Assign specific local images based on repository name
+        if (repo.name === 'LibraryManagementSystem') {
+          repo.image = 'projects/LMS.png' // Path relative to public/
+        } else if (repo.name === 'my-resume') {
+          repo.image = 'projects/Resume.png' // Path relative to public/
+        }
+        // You can add more conditions for other projects here
+        return repo
+      })
+      repos.value = processedRepos.sort(
         (a: Repo, b: Repo) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime(),
       )
     }
