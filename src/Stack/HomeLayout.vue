@@ -21,7 +21,7 @@
             class="text-sm sm:text-base md:text-lg xl:text-xl body-font text-neutral-600 dark:text-neutral-300 mb-8"
           >
             He's a passionate
-            <span class="font-semibold text-secondary-600 dark:text-secondary-400"
+            <span class="font-semibold text-secondary-600 dark:text-accent-400"
               >Fullstack Developer</span
             >
             with a keen eye for creating beautiful and functional web applications. With expertise
@@ -32,10 +32,18 @@
       </section>
       <section id="experience" class="min-h-screen py-12 sm:py-20 px-4 sm:px-8">
         <div class="grid grid-cols-1 md:grid-cols-1 gap-6">
-          <ExperienceBox title="Experience" icon="fas fa-briefcase">
+          <ExperienceBox
+            title="Experience"
+            class="md:text-lg lg:text-xl"
+            icon="fas fa-briefcase md:text-lg lg:text-xl"
+          >
             <Experience />
           </ExperienceBox>
-          <ExperienceBox title="Education" icon="fas fa-graduation-cap">
+          <ExperienceBox
+            title="Education"
+            class="md:text-lg lg:text-xl"
+            icon="fas fa-graduation-cap md:text-lg lg:text-xl"
+          >
             <EducationList />
           </ExperienceBox>
         </div>
@@ -131,6 +139,7 @@
         <!-- Skills Tab Content -->
         <div v-if="activeTab === 'skills'">
           <SkillsCarousel />
+          <TechStack />
         </div>
       </section>
       <section id="contact" class="min-h-screen py-12 sm:py-16 px-4 sm:px-8">
@@ -153,6 +162,7 @@ import ContactForm from '../components/ContactForm.vue'
 import ExperienceBox from '../components/Animation/ExperienceBox.vue'
 import AnimatedBox from '../components/Animation/AnimatedBox.vue'
 import ScrollTransition from '../components/Animation/ScrollTransition.vue'
+import TechStack from '../components/TechStack.vue'
 import { ref, onMounted, onUnmounted, inject } from 'vue'
 import type { Ref } from 'vue'
 

@@ -44,7 +44,7 @@ const scrollToSection = (sectionId: string) => {
 <template>
   <!-- Hamburger Icon (mobile only) -->
   <button
-    class="fixed top-4 left-4 z-50 md:hidden bg-transparent-primary-900 text-primary-300 p-2 rounded focus:outline-none hover:bg-primary-800 transition-colors"
+    class="fixed top-4 left-4 z-50 md:hidden bg-primary-900/75 text-primary-300 p-2 rounded focus:outline-none hover:bg-primary-800 transition-colors"
     @click="isMobileOpen = true"
     v-if="!isMobileOpen"
   >
