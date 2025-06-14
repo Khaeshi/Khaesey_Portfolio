@@ -5,8 +5,8 @@
     <!-- Main Content -->
     <main
       :style="{
-        marginLeft: isDesktop ? (isCollapsed ? '100px' : '400px') : '0',
-        width: isDesktop ? (isCollapsed ? 'calc(100% - 100px)' : 'calc(100% - 400px)') : '100%',
+        marginLeft: isDesktop ? (isCollapsed ? '100px' : '320px') : '0',
+        width: isDesktop ? (isCollapsed ? 'calc(100% - 100px)' : 'calc(100% - 320px)') : '100%',
       }"
       class="transition-all duration-300 bg-white dark:bg-neutral-900 min-h-screen"
     >
@@ -25,13 +25,13 @@
               >Fullstack Developer</span
             >
             with a keen eye for creating beautiful and functional web applications. With expertise
-            in modern web technologies, I strive to build solutions that not only meet technical
+            in modern web technologies, He strive to build solutions that not only meet technical
             requirements but also provide exceptional user experiences.
           </p>
         </div>
       </section>
       <section id="experience" class="min-h-screen py-12 sm:py-20 px-4 sm:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-1 gap-6">
           <ExperienceBox title="Experience" icon="fas fa-briefcase">
             <Experience />
           </ExperienceBox>

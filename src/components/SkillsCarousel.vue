@@ -1,25 +1,21 @@
 <template>
   <div class="w-full overflow-hidden bg-white dark:bg-neutral-800 rounded-2xl p-4 shadow-lg">
     <swiper
-      :modules="[SwiperAutoplay, SwiperPagination, SwiperFreeMode]"
+      :modules="[SwiperAutoplay, SwiperFreeMode]"
       :slides-per-view="'auto'"
       :space-between="32"
-      :loop="false"
+      :loop="true"
       :freeMode="{
         enabled: true,
         momentum: true,
         momentumRatio: 0.5,
         momentumVelocityRatio: 0.5,
-        momentumBounce: true,
-        momentumBounceRatio: 0.5,
+        momentumBounce: false,
       }"
       :speed="3000"
       :autoplay="{
         delay: 0,
         disableOnInteraction: false,
-      }"
-      :pagination="{
-        clickable: true,
       }"
       class="skills-swiper"
     >
@@ -35,9 +31,8 @@
 
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Autoplay, Pagination, FreeMode } from 'swiper/modules'
+import { Autoplay, FreeMode } from 'swiper/modules'
 import 'swiper/css'
-import 'swiper/css/pagination'
 import 'swiper/css/free-mode'
 import LaravelLogo from '../assets/icons/Laravel-Logo.png'
 import VueLogo from '../assets/icons/Vue-Logo.png'
@@ -47,7 +42,6 @@ import MySqlLogo from '../assets/icons/mySQL-Logo.png'
 import GitLogo from '../assets/icons/Git-Logo.png'
 
 const SwiperAutoplay = Autoplay
-const SwiperPagination = Pagination
 const SwiperFreeMode = FreeMode
 
 interface Skill {
@@ -69,15 +63,6 @@ const skills: Skill[] = [
 .skills-swiper {
   padding: 1rem 0;
   overflow: visible;
-}
-
-:deep(.swiper-pagination) {
-  bottom: -5px;
-}
-
-:deep(.swiper-pagination-bullet) {
-  background: theme('colors.primary.500');
-  opacity: 0.5;
 }
 
 :deep(.swiper-wrapper) {
