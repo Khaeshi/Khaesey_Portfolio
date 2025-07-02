@@ -13,12 +13,12 @@
       <section id="about" class="about min-h-screen flex items-center justify-center px-4 sm:px-8">
         <div class="animate-slidein max-w-4xl w-full text-center">
           <h2
-            class="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-extrabold heading-font text-primary-600 dark:text-primary-400 mb-4"
+            class="text-2xl sm:text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-extrabold heading-font text-primary-600 dark:text-primary-400 mb-4"
           >
             Khaesey Angel Tablante
           </h2>
           <p
-            class="text-sm sm:text-base md:text-lg xl:text-xl body-font text-neutral-600 dark:text-neutral-300 mb-8"
+            class="text-sm sm:text-base md:text-lg xl:text-xl 2xl:text-2xl body-font text-neutral-600 dark:text-neutral-300 mb-8"
           >
             He's a passionate
             <span class="font-semibold text-secondary-600 dark:text-accent-400"
@@ -31,7 +31,7 @@
         </div>
       </section>
       <section id="experience" class="min-h-screen py-12 sm:py-20 px-4 sm:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-1 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6">
           <ExperienceBox
             title="Experience"
             class="md:text-lg lg:text-xl"
@@ -78,6 +78,17 @@
             ]"
           >
             Skills
+          </button>
+          <button
+            @click="activeTab = 'certificates'"
+            :class="[
+              'px-4 py-2 rounded-lg font-medium transition-colors',
+              activeTab === 'certificates'
+                ? 'bg-primary-600 text-white'
+                : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-700',
+            ]"
+          >
+            Certificates
           </button>
         </div>
 
@@ -141,7 +152,38 @@
           <SkillsCarousel />
           <TechStack />
         </div>
+
+        <!-- Certificates Tab Content -->
+        <div v-if="activeTab === 'certificates'">
+          <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6">
+            <div
+              class="bg-white dark:bg-neutral-800 rounded-lg p-4 shadow-lg border border-neutral-200 dark:border-neutral-700 flex flex-col items-center"
+            >
+              <img
+                src="/certificates/Coursera-Meta-Frontend_Cert.png"
+                alt="Certificate image"
+                class="w-full h-auto max-w-xl mb-4 rounded-lg"
+              />
+              <h3 class="text-lg font-semibold text-primary-600 dark:text-primary-400">
+                Certificate 1
+              </h3>
+            </div>
+            <div
+              class="bg-white dark:bg-neutral-800 rounded-lg p-4 shadow-lg border border-neutral-200 dark:border-neutral-700 flex flex-col items-center"
+            >
+              <img
+                src="/certificates/Coursera-Meta-Frontend_Cert.png"
+                alt="Certificate image"
+                class="w-full h-auto max-w-xl mb-4 rounded-lg"
+              />
+              <h3 class="text-lg font-semibold text-primary-600 dark:text-primary-400">
+                Certificate 2
+              </h3>
+            </div>
+          </div>
+        </div>
       </section>
+
       <section id="contact" class="min-h-screen py-12 sm:py-16 px-4 sm:px-8">
         <h1
           class="text-2xl sm:text-3xl font-bold heading-font mb-6 sm:mb-8 text-primary-600 dark:text-primary-400"

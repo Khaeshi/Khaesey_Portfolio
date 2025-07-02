@@ -9,8 +9,9 @@
         Frontend
       </h3>
       <p class="text-md md:text-lg lg:text-xl text-neutral-600 dark:text-neutral-300 text-sm">
-        Building responsive and interactive user interfaces using Vue.js and Tailwind CSS.
-        Experienced in creating modern, accessible web applications with a focus on user experience.
+        He builds responsive and interactive user interfaces using Vue.js and Tailwind CSS.
+        Passionate about creating a modern, accessible web applications for a better user
+        experience.
       </p>
     </div>
 
@@ -22,8 +23,8 @@
         Backend
       </h3>
       <p class="text-md md:text-lg lg:text-xl text-neutral-600 dark:text-neutral-300 text-sm">
-        Developing robust server-side applications with Laravel and PHP. Implementing RESTful APIs,
-        authentication systems, and complex business logic.
+        He develops robust server-side applications with Laravel and PHP. Implementing RESTful APIs,
+        authentication systems, and basic business logic.
       </p>
     </div>
 

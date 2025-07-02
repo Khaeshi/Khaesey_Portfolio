@@ -7,7 +7,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [vue(), vueDevTools()],
-  base: '/my-portfolio/',
+  base: '/Khaesey_Portfolio/',
   server: {
     port: 3000,
   },

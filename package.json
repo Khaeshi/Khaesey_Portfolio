@@ -43,5 +43,6 @@
     "vite": "^6.3.5",
     "vite-plugin-vue-devtools": "^7.7.2",
     "vue-tsc": "^2.2.8"
-  }
+  },
+  "homepage": "https://khaeshi.github.io/Khaesey_Portfolio/"
 }
