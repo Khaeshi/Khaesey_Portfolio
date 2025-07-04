@@ -28,6 +28,14 @@
             in modern web technologies, he strive to build solutions that not only meet technical
             requirements but also provide exceptional user experiences.
           </p>
+          <div class="flex justify-center mt-8">
+            <button
+              @click="showResumeModal = true"
+              class="bg-accent-500 text-white text-sm md:text-xl lg:text-2xl py-3 px-5 rounded-lg hover:bg-accent-700 transition-colors body-font disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              See Resume
+            </button>
+          </div>
         </div>
       </section>
       <section id="experience" class="min-h-screen py-12 sm:py-20 px-4 sm:px-8">
@@ -193,6 +201,7 @@
         <ContactForm />
       </section>
     </main>
+    <ResumeCV v-model="showResumeModal" />
   </div>
 </template>
 
@@ -205,8 +214,11 @@ import ExperienceBox from '../components/Animation/ExperienceBox.vue'
 import AnimatedBox from '../components/Animation/AnimatedBox.vue'
 import ScrollTransition from '../components/Animation/ScrollTransition.vue'
 import TechStack from '../components/TechStack.vue'
+import ResumeCV from '../components/Modal/ResumeCV.vue'
 import { ref, onMounted, onUnmounted, inject } from 'vue'
 import type { Ref } from 'vue'
+
+const showResumeModal = ref(false)
 
 const isDesktop: Ref<boolean> = ref(window.innerWidth >= 768)
 const handleResize = (): void => {
