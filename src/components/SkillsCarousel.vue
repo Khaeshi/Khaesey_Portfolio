@@ -7,7 +7,7 @@
       :slides-per-view="'auto'"
       :space-between="32"
       :loop="true"
-      :freeMode="{
+      :free-Mode="{
         enabled: true,
         momentum: true,
         momentumRatio: 0.5,
@@ -15,7 +15,7 @@
         momentumBounce: false,
       }"
       :speed="3000"
-      :autoplay="{
+      :auto-play="{
         delay: 0,
         disableOnInteraction: false,
       }"
