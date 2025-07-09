@@ -8,6 +8,31 @@
     />
     <NavSideBar />
     <HomeLayout />
+    <!-- icons thanks-->
+    <div
+      v-if="showSponsorModal"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60"
+    >
+      <div class="bg-white dark:bg-neutral-900 rounded-lg p-6 max-w-md relative text-center">
+        <button
+          @click="showSponsorModal = false"
+          class="absolute top-2 right-3 text-2xl text-gray-500 hover:text-red-500"
+          aria-label="Close"
+        >
+          &times;
+        </button>
+        <h2 class="text-xl font-bold mb-2 dark:text-primary-400">Thanks to Icons8!</h2>
+        <p class="mb-4 dark:text-secondary-100">
+          Icons in this portfolio are provided by
+          <a
+            href="https://icons8.com"
+            target="_blank"
+            class="text-blue-600 underline dark:text-accent-400"
+            >Icons8</a
+          >
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -21,6 +46,7 @@ const isLoading = ref(true)
 const loadingProgress = ref(0)
 const loadingMessage = ref('Initializing...')
 const avatarUrl = new URL('/picture/avatar.png', import.meta.url).href
+const showSponsorModal = ref(false)
 
 // Loading messages that change based on progress
 const loadingMessages = [
@@ -62,6 +88,8 @@ onMounted(() => {
       // Add a small delay before hiding
       setTimeout(() => {
         isLoading.value = false
+        // Show sponsor modal after loading completes
+        showSponsorModal.value = true
       }, 500)
     }
   }
