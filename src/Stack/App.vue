@@ -1,12 +1,13 @@
 <template>
-  <div class="w-screen overflow-x-hidden scrollbar-hide">
+  <div class="w-full overflow-x-hidden scrollbar-hide">
     <LoadingScreen
       :is-loading="isLoading"
       :logo-url="avatarUrl"
       :progress-percentage="loadingProgress"
       :progress-message="loadingMessage"
     />
-    <NavSideBar />
+    <NavSideBar v-if="!isMobile" v-model="isMobileOpen" />
+    <NavBottomBar v-else />
     <HomeLayout />
     <!-- icons thanks-->
     <div
@@ -37,8 +38,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import NavSideBar from '../components/NavSideBar.vue'
+import { ref, onMounted, onUnmounted } from 'vue'
+import NavSideBar from '../components/Navbar/NavSideBar.vue'
+import NavBottomBar from '../components/Navbar/NavBottomBar.vue'
 import HomeLayout from './HomeLayout.vue'
 import LoadingScreen from '../components/Loading/LoadingScreen.vue'
 
@@ -47,6 +49,14 @@ const loadingProgress = ref(0)
 const loadingMessage = ref('Initializing...')
 const avatarUrl = new URL('/picture/avatar.png', import.meta.url).href
 const showSponsorModal = ref(false)
+
+const isMobileOpen = ref(false)
+
+const isMobile = ref(window.innerWidth < 768)
+
+const handleResize = () => {
+  isMobile.value = window.innerWidth < 768
+}
 
 // Loading messages that change based on progress
 const loadingMessages = [
@@ -60,6 +70,8 @@ const loadingMessages = [
 
 // Simulate realistic loading with variable speeds
 onMounted(() => {
+  window.addEventListener('resize', handleResize)
+
   let currentProgress = 0
   const totalDuration = 3000 // 3 seconds total
   const startTime = Date.now()
@@ -96,5 +108,9 @@ onMounted(() => {
 
   // Start the animation
   requestAnimationFrame(updateProgress)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize)
 })
 </script>

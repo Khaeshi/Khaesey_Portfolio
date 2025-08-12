@@ -1,6 +1,6 @@
 <template>
   <div
-    class="intro-background min-h-screen w-screen overflow-x-hidden scrollbar-hide bg-neutral-50 dark:bg-neutral-950"
+    class="intro-background min-h-screen w-full overflow-x-hidden scrollbar-hide bg-neutral-50 dark:bg-neutral-950"
   >
     <!-- Main Content -->
     <main

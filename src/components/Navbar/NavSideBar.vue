@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Avatar from './Avatar.vue'
+import Avatar from '../Avatar.vue'
 import { ref, onMounted, onUnmounted, watch, provide } from 'vue'
 
 const isCollapsed = ref(false)
@@ -66,13 +66,14 @@ const scrollToSection = (sectionId: string) => {
       'fixed top-0 min-h-screen max-h-screen z-50 shadow-lg transition-all duration-300 bg-white dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 flex flex-col',
       isCollapsed ? 'md:w-[100px] w-[80vw]' : 'md:w-[320px] w-[80vw]',
       'md:z-40',
-      // Mobile: slide in/out
-      isMobileOpen ? 'left-0' : '-left-[80vw]',
+      // Mobile: slide in/out using transform
+      isMobileOpen ? 'translate-x-0' : '-translate-x-full',
+      'md:translate-x-0',
       'md:left-0',
       'md:block',
       'md:transition-none',
     ]"
-    style="transition-property: left, width, background-color"
+    style="transition-property: transform, width, background-color; left: 0"
   >
     <!-- Close button (mobile only) -->
     <button
