@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import Avatar from '../Avatar.vue'
+import Avatar from '../ui/Avatar.vue'
 import { ref, onMounted, onUnmounted, watch, provide } from 'vue'
 
 const isCollapsed = ref(false)
-const isMobileOpen = ref(false)
 
 provide('isCollapsed', isCollapsed)
 
@@ -13,9 +12,6 @@ const setSidebarWidth = () => {
 
 const checkScreenSize = () => {
   isCollapsed.value = window.innerWidth < 768
-  if (window.innerWidth >= 768) {
-    isMobileOpen.value = false
-  }
 }
 
 onMounted(() => {
@@ -35,57 +31,30 @@ const scrollToSection = (sectionId: string) => {
   if (element) {
     element.scrollIntoView({ behavior: 'smooth' })
   }
-  if (window.innerWidth < 768) {
-    isMobileOpen.value = false
-  }
 }
 </script>
 
 <template>
-  <!-- Hamburger Icon (mobile only) -->
-  <button
-    class="fixed top-4 left-4 z-50 md:hidden bg-primary-900/75 text-primary-300 p-2 rounded focus:outline-none hover:bg-primary-800 transition-colors"
-    @click="isMobileOpen = true"
-    v-if="!isMobileOpen"
-  >
-    <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-    </svg>
-  </button>
-
-  <!-- Overlay (mobile only, when sidebar is open) -->
-  <div
-    v-if="isMobileOpen"
-    class="fixed inset-0 bg-neutral-950/80 backdrop-blur-sm z-40 md:hidden"
-    @click="isMobileOpen = false"
-  ></div>
-
   <!-- Sidebar Navigation -->
   <aside
     :class="[
-      'fixed top-0 min-h-screen max-h-screen z-50 shadow-lg transition-all duration-300 bg-white dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 flex flex-col',
-      isCollapsed ? 'md:w-[100px] w-[80vw]' : 'md:w-[320px] w-[80vw]',
-      'md:z-40',
-      // Mobile: slide in/out using transform
-      isMobileOpen ? 'translate-x-0' : '-translate-x-full',
-      'md:translate-x-0',
-      'md:left-0',
-      'md:block',
-      'md:transition-none',
+      'fixed top-0 left-0 min-h-screen max-h-screen z-40 shadow-lg transition-all duration-300 bg-white dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 flex flex-col',
+      isCollapsed ? 'w-[100px]' : 'w-[320px]',
     ]"
     style="transition-property: transform, width, background-color; left: 0"
   >
-    <!-- Close button (mobile only) -->
-    <button
-      v-if="isMobileOpen"
-      class="absolute top-4 right-4 z-50 md:hidden text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 text-3xl focus:outline-none transition-colors"
-      @click="isMobileOpen = false"
-    >
-      &times;
-    </button>
     <div :class="['flex justify-center transition-all duration-300 ease-in-out scale-100']">
-      <Avatar />
+      <div class="flex flex-col items-center py-4 sm:py-8 md:py-12 lg:py-20">
+        <div class="relative">
+          <Avatar class="w-12 h-12 sm:w-32 sm:h-32 md:w-42 md:h-42 lg:w-60 lg:h-60" />
+        </div>
+        <h2 class="text-lg sm:text-xl pt-2 sm:pt-4 font-bold text-primary-400">
+          Khaesey Angel Tablante
+        </h2>
+        <p class="text-sm sm:text-base text-secondary-400">Fullstack Developer</p>
+      </div>
     </div>
+
     <nav class="flex flex-col space-y-8 px-4 py-6 overflow-y-auto flex-grow">
       <button
         @click="scrollToSection('about')"
