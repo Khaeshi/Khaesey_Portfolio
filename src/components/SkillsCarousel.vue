@@ -22,7 +22,7 @@
       }"
       class="skills-swiper"
     >
-      <swiper-slide v-for="skill in skills" :key="skill.name" class="sm:!w-auto md:!w-auto">
+      <swiper-slide v-for="skill in skills" :key="skill.name" class="!w-auto">
         <div class="flex flex-col items-center min-w-[100px]">
           <img :src="skill.icon" :alt="skill.name" class="w-16 h-16 mb-2 object-contain" />
           <span class="font-semibold text-neutral-700 dark:text-neutral-300">{{ skill.name }}</span>
