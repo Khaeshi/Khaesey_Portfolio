@@ -10,18 +10,21 @@ const setSidebarWidth = () => {
   document.body.style.setProperty('--sidebar-width', isCollapsed.value ? '100px' : '400px')
 }
 
+const mediaQuery = window.matchMedia('(max-width: 767.98px)')
 const checkScreenSize = () => {
-  isCollapsed.value = window.innerWidth < 768
+  isCollapsed.value = mediaQuery.matches
 }
 
 onMounted(() => {
   checkScreenSize()
   setSidebarWidth()
-  window.addEventListener('resize', checkScreenSize)
+  mediaQuery.addEventListener?.('change', checkScreenSize)
+  mediaQuery.addListener?.(checkScreenSize)
 })
 
 onUnmounted(() => {
-  window.removeEventListener('resize', checkScreenSize)
+  mediaQuery.removeEventListener?.('change', checkScreenSize)
+  mediaQuery.removeListener?.(checkScreenSize)
 })
 
 watch(isCollapsed, setSidebarWidth, { immediate: true })

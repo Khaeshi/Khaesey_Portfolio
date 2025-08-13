@@ -52,10 +52,11 @@ const showSponsorModal = ref(false)
 
 const isMobileOpen = ref(false)
 
-const isMobile = ref(window.innerWidth < 768)
+const mediaQuery = window.matchMedia('(max-width: 767.98px)')
+const isMobile = ref(mediaQuery.matches)
 
 const handleResize = () => {
-  isMobile.value = window.innerWidth < 768
+  isMobile.value = mediaQuery.matches
 }
 
 // Loading messages that change based on progress
@@ -70,7 +71,9 @@ const loadingMessages = [
 
 // Simulate realistic loading with variable speeds
 onMounted(() => {
-  window.addEventListener('resize', handleResize)
+  mediaQuery.addEventListener?.('change', handleResize)
+  // Fallback for older browsers
+  mediaQuery.addListener?.(handleResize)
 
   let currentProgress = 0
   const totalDuration = 3000 // 3 seconds total
@@ -111,6 +114,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  window.removeEventListener('resize', handleResize)
+  mediaQuery.removeEventListener?.('change', handleResize)
+  mediaQuery.removeListener?.(handleResize)
 })
 </script>

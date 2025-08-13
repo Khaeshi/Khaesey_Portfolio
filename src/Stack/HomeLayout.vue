@@ -1,6 +1,6 @@
 <template>
   <div
-    class="intro-background min-h-screen w-full overflow-x-hidden scrollbar-hide bg-neutral-50 dark:bg-neutral-950"
+    class="intro-background min-h-[100svh] w-full overflow-x-hidden scrollbar-hide bg-neutral-50 dark:bg-neutral-950"
   >
     <!-- Main Content -->
     <main
@@ -113,15 +113,26 @@
           >
             <AnimatedBox :customClass="'hover:scale-105 transition-transform duration-300'">
               <img
-                :src="repo.image || 'projects/Resume.png'"
-                alt="Project image"
+                v-if="repo.image && !failedImages[repo.id]"
+                :src="repo.image"
+                :alt="repo.name ? `Project: ${repo.name}` : 'Project image'"
                 class="w-full h-32 object-cover mb-4 rounded-lg"
+                @error="handleImgError(repo.id)"
               />
+              <div
+                v-else
+                class="w-full h-32 mb-4 rounded-lg bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center text-center"
+                :aria-label="repo.name ? `Project: ${repo.name}` : 'Project image placeholder'"
+              >
+                <span class="px-3 text-neutral-600 dark:text-neutral-300 font-medium line-clamp-2">
+                  {{ repo.name || 'Untitled Project' }}
+                </span>
+              </div>
               <div>
                 <h3
                   class="text-xl font-bold heading-font text-neutral-800 dark:text-neutral-100 mb-2 break-words"
                 >
-                  {{ repo.name }}
+                  {{ repo.name || 'Untitled Project' }}
                 </h3>
                 <div class="flex flex-wrap gap-2 mb-2">
                   <span
@@ -140,8 +151,8 @@
                     :href="repo.html_url"
                     target="_blank"
                     class="text-secondary-600 dark:text-secondary-400 hover:text-secondary-500 dark:hover:text-secondary-300 font-medium body-font"
-                    >Source Code →</a
-                  >
+                    >Source Code →
+                  </a>
                   <a
                     v-if="repo.homepage"
                     :href="repo.homepage"
@@ -168,24 +179,12 @@
               class="bg-white dark:bg-neutral-800 rounded-lg p-4 shadow-lg border border-neutral-200 dark:border-neutral-700 flex flex-col items-center"
             >
               <img
-                src="/certificates/Coursera-Meta-Frontend_Cert.png"
+                src="/certificates/Coursera-Meta-FullStack_Developer-Cert.png"
                 alt="Certificate image"
                 class="w-full h-auto max-w-xl mb-4 rounded-lg"
               />
               <h3 class="text-lg font-semibold text-primary-600 dark:text-primary-400">
                 Certificate 1
-              </h3>
-            </div>
-            <div
-              class="bg-white dark:bg-neutral-800 rounded-lg p-4 shadow-lg border border-neutral-200 dark:border-neutral-700 flex flex-col items-center"
-            >
-              <img
-                src="/certificates/Coursera-Meta-Frontend_Cert.png"
-                alt="Certificate image"
-                class="w-full h-auto max-w-xl mb-4 rounded-lg"
-              />
-              <h3 class="text-lg font-semibold text-primary-600 dark:text-primary-400">
-                Certificate 2
               </h3>
             </div>
           </div>
@@ -244,7 +243,14 @@ type Repo = {
   image?: string | null
   topics?: string[] | null
 }
+
+//this is for Image, when false, it returns texts tile
 const repos: Ref<Repo[]> = ref([])
+const failedImages: Ref<Record<number, boolean>> = ref({})
+
+const handleImgError = (id: number) => {
+  failedImages.value[id] = true
+}
 
 onMounted(async (): Promise<void> => {
   try {
@@ -257,8 +263,10 @@ onMounted(async (): Promise<void> => {
           repo.image = 'projects/LMS.png' // Path relative to public/
         } else if (repo.name === 'my-resume') {
           repo.image = 'projects/Resume.png' // Path relative to public/
+        } else if (repo.name === 'my-app') {
+          repo.image = 'projects/my-app.png'
         }
-        // You can add more conditions for other projects here
+        // add more conditions for other projects here
         return repo
       })
       repos.value = processedRepos.sort(
