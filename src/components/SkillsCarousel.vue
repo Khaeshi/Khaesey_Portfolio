@@ -4,10 +4,10 @@
     <swiper
       v-if="!isLargeScreen"
       :modules="[SwiperAutoplay, SwiperFreeMode]"
-      :slides-per-view="'auto'"
-      :space-between="32"
+      slides-per-view="auto"
+      :space-between="10"
       :loop="true"
-      :free-Mode="{
+      :free-mode="{
         enabled: true,
         momentum: true,
         momentumRatio: 0.5,
@@ -15,9 +15,10 @@
         momentumBounce: false,
       }"
       :speed="3000"
-      :auto-play="{
+      :autoplay="{
         delay: 0,
         disableOnInteraction: false,
+        pauseOnMouseEnter: false,
       }"
       class="skills-swiper"
     >
@@ -51,23 +52,27 @@ import TailwindLogo from '../assets/icons/Tailwindcss-Logo.png'
 import PhpLogo from '../assets/icons/PHP-Logo.png'
 import MySqlLogo from '../assets/icons/mySQL-Logo.png'
 import GitLogo from '../assets/icons/Git-Logo.png'
+import PythonLogo from '../assets/icons/Python-Logo.png'
+import DjangoLogo from '../assets/icons/Django-Logo.png'
 
 const SwiperAutoplay = Autoplay
 const SwiperFreeMode = FreeMode
 
 const isLargeScreen = ref(false)
-
+const mq = window.matchMedia('(min-width: 1024px)')
 const checkScreenSize = () => {
-  isLargeScreen.value = window.innerWidth >= 1024 // lg breakpoint
+  isLargeScreen.value = mq.matches
 }
 
 onMounted(() => {
   checkScreenSize()
-  window.addEventListener('resize', checkScreenSize)
+  mq.addEventListener?.('change', checkScreenSize)
+  mq.addListener?.(checkScreenSize)
 })
 
 onUnmounted(() => {
-  window.removeEventListener('resize', checkScreenSize)
+  mq.removeEventListener?.('change', checkScreenSize)
+  mq.removeListener?.(checkScreenSize)
 })
 
 interface Skill {
@@ -82,6 +87,8 @@ const skills: Skill[] = [
   { name: 'PHP', icon: PhpLogo },
   { name: 'MySQL', icon: MySqlLogo },
   { name: 'Git', icon: GitLogo },
+  { name: 'Python', icon: PythonLogo },
+  { name: 'Django', icon: DjangoLogo },
 ]
 </script>
 
@@ -96,7 +103,7 @@ const skills: Skill[] = [
 }
 
 :deep(.swiper-slide) {
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease;
 }
 
 :deep(.swiper-slide:hover) {
